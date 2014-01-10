@@ -27,7 +27,7 @@ class Migration{
 	 */
 	protected $field_mappings = array(
 		'historylist' => array(
-			'id' => 'id', // I'll rely on autoincrement
+			//'id' => 'id', // We should rely on autoincrement
 			'date_played' => 'date_played',
 			'songtype' => 'song_type', // needs mapping
 			//'id_subcat', // not in SAM
@@ -172,7 +172,6 @@ class Migration{
 		while( $row = $query->fetch(PDO::FETCH_ASSOC) ){
 
 			if(empty($row)){
-				var_dump($query);
 				break;
 			}
 			$row = array_change_key_case($row, CASE_LOWER);
@@ -232,7 +231,6 @@ class Migration{
 			// Prepare and insert each MAX_INSERT_ROWS
 			if( ($remaining_rows >= MAX_INSERT_ROWS && $rows_processed >= MAX_INSERT_ROWS) || ($remaining_rows < MAX_INSERT_ROWS && $remaining_rows <= 0 )){
 				
-				var_dump($remaining_rows, $rows_processed, ($remaining_rows >= MAX_INSERT_ROWS && $rows_processed >= MAX_INSERT_ROWS), ($remaining_rows < MAX_INSERT_ROWS && $remaining_rows < 1 ));
 				$table_sql[] = implode(",\n", $data_sql).";\n";
 				if(WORK_MODE == WORK_MODE_INSERT){
 					$mysql_sql = implode("\n", $table_sql);
@@ -250,7 +248,6 @@ class Migration{
 				$rows_processed = 0;
 			}
 		}
-		//var_dump($table_sql);
 	}
 	
 	/**
