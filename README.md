@@ -31,6 +31,7 @@ If you have PHP on your PATH, run it in CLI like this: `php migrate.php`
 ### Version 0.1 ###
 Exports only `historylist` data from SAMBC.
 Few fields are missing from resulting data:
+
 1. `id_subcat` (sub category reference);
 2. `disk_no` (no disc numbers in SAMDB);
 3. `original_artist`;
@@ -38,10 +39,15 @@ Few fields are missing from resulting data:
 
 I had to fiddle a bit with genre data, but got it working after all. If the genre from SAMBC `songlist` matches genre in RDJ `genre` table the matching `genre_id` will be exported. Comparison is done case-insensitive, so it should be ok if data is different from song to song.
 
+### Version 0.2 ###
+Can export `historylist and `songlist` data from SAMBC.
+For now song data will be exported without category data. The problem is that RadioDJ does not have multilevel categories like SAMBC does.
+I had a conversation with Marius about this and he promised to look if and how he could implement that in RDJ.
+All SAMBC `xfade` settings will be translated to RDJ `cue_times`, but all songs will have to be placed in correct subcategories.
+
 ---------------------------------
 
 ### TODO: ###
-* Export `songlist` data to RDJ `songs`. this will be hard one.
 * Esport SAMBC categories as RadioDJ playlists. If only RDJ rotations allowed to select songs from playlists, I'd be ready to migrate.
 * Create RDJ MySQL tables if needed
 * Maybe check `songlist` entries for moved/removed files before import

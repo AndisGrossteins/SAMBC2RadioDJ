@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Migrate SAMBC data to Radio DJ v0.1
+ * @package Migrate SAMBC data to Radio DJ v0.2
  * @author Andis Grosšteins
  * @copyright (C) 2014 - Andis Grosšteins (http://axellence.lv)
  * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -9,7 +9,7 @@
  */
 
 require_once('lib/functions.php');
-// To overcome some git restrictions esclude config_local.php with .gitignore
+// config_local.php is excluded in .gitignore
 $config_file = file_exists('config_local.php')?'config_local.php':'config.php';
 require_once($config_file);
 require_once('lib/class.migration.php');
@@ -25,6 +25,7 @@ require_once('lib/class.migration.php');
 define('WORK_MODE', WORK_MODE_FILE);
 
 $migratin = new Migration;
-//var_dump($migratin);
-$migratin->migrate_histroylist();
+
+//$migratin->migrate_histroylist();
+$migratin->migrate_songlist();
 ?>

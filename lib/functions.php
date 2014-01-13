@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Migrate SAMBC data to Radio DJ v0.1
+ * @package Migrate SAMBC data to Radio DJ v0.2
  * @author Andis Grosšteins
  * @copyright (C) 2014 - Andis Grosšteins (http://axellence.lv)
  * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -65,8 +65,7 @@ function iconv_deep($from_charset, $to_charset, $array){
 			$charset = mb_detect_encoding($val);
 			if($charset != 'ASCII' && $charset != $to_charset){
 				//$data = mb_convert_encoding($data, 'ISO-8859-2', 'UTF-8');
-				$val = iconv($charset, $to_charset, $val);
-				var_dump(array($charset, $to_charset, $val));
+				$val = iconv($from_charset, $to_charset, $val);
 			}
 		}
 		if(is_array($val)){
